@@ -3,44 +3,41 @@ package main
 import (
 	"bufio"
 	"fmt"
-	"math"
 	"os"
 	"strconv"
 )
 
 func main() {
-	file, err := os.Open("input.txt")
-
-	if err != nil {
-		panic(err)
-	}
+	file, _ := os.Open("input.txt")
 
 	scanner := bufio.NewScanner(file)
 	scanner.Split(bufio.ScanLines)
 
-	var total int = 0
+	total := 0
 
 	for scanner.Scan() {
-		module, err := strconv.Atoi(scanner.Text())
-
-		if err != nil {
-			panic(err)
-		}
-		
-		total += massToFuel(module)
+		module, _ := strconv.Atoi(scanner.Text())
+		total += massToFuel1(module)
 	}
-	
+
 	file.Close()
-	
+
 	fmt.Println(total)
 }
 
-func massToFuel(x int) int {
-	fuel := int(math.Floor(float64(x) / 3.0)) -2
+// For Part 2
+func massToFuel1(x int) int {
+	fuel := x/3 - 2
+	return fuel
+}
+
+// For Part 2
+func massToFuel2(x int) int {
+	fuel := x/3 - 2
 
 	if fuel <= 0 {
 		return 0
 	} else {
-		return fuel + massToFuel(fuel)
+		return fuel + massToFuel2(fuel)
 	}
 }
