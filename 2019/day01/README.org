@@ -1,0 +1,3 @@
+* 2019
+  Doing the 2019 Advent of Code using [[https://golang.org/][Go]] for the first time. Literally
+  the first thing I've coded using Go is day01.go.
